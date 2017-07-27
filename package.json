@@ -1,0 +1,25 @@
+{
+  "name": "mern-stack",
+  "version": "1.0.0",
+  "description": "a basic MERN (MongoDB/Express/React/Node.js) Stack application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iicoom/MERN-Stack.git"
+  },
+  "keywords": [
+    "MongoDB",
+    "Express",
+    "React",
+    "Node.js"
+  ],
+  "author": "Leo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iicoom/MERN-Stack/issues"
+  },
+  "homepage": "https://github.com/iicoom/MERN-Stack#readme"
+}
