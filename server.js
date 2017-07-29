@@ -28,7 +28,7 @@ app.use(bodyParser.json());
 app.use(function(req,res,next){
 	res.setHeader('Access-Control-Allow-Origin','*');
 	res.setHeader('Access-Control-Allow-Credentials', 'true');
-	res.setHeader('Access-Control-Allow-Methods', 'Access-Control-Allow-Methods');
+	res.setHeader('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS');
 	res.setHeader('Access-Control-Allow-Headers',
 		'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
 
@@ -54,6 +54,7 @@ router.get('/api',function(req,res){
 	res.json({ message: 'API Initialized!'});
 });
 
+//获取数据API http://localhost:3000/comments
 router.get('/comments',function(req,res){
 	Comment.find(function(err,comments){
 		if (err) {
@@ -76,6 +77,35 @@ router.post('/comments',function(req,res){
 		res.json({message: 'Comment successfully added!'});
 	})
 });
+
+//Update API
+router.put('/comments/:comment_id',function(req,res){
+	Comment.findById(req.params.comment_id,function(err,comment){
+		if(err)
+			res.send(err)
+		// (req.body.author) ? comment.author = req.body.author : null;
+		// (req.body.text) ? comment.text = req.body.text : null;
+		comment.author = req.body.author;
+		comment.text = req.body.text;
+
+		comment.save(function(err){
+			if(err)
+				res.send(err);
+			res.json({ message: 'Comment has been updated'});
+		})
+	})
+})
+
+//Delete API
+router.delete('/comments/:comment_id',function(req,res){
+	//console.log(req.params)
+
+	Comment.remove({_id: req.params.comment_id},function(err,comment){
+		if(err)
+			res.send(err)
+		res.json({ message: 'Comment has been deleted'})
+	})
+})
 
 
 app.use('/',router);
