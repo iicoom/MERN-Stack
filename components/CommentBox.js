@@ -2,7 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import CommentList from './CommentList';
 import CommentForm from './CommentForm';
-import DATA from '../data';
+import style from '../style';
+// import DATA from '../data';
 
 class CommentBox extends React.Component {
 	constructor(props) {
@@ -57,13 +58,13 @@ class CommentBox extends React.Component {
 	componentDidMount() {
 		this.loadCommentsFromServer();
 		//setInterval(this.loadCommentsFromServer, this.props.pollInterval);
+		//console.log(style
 	}
 
 	render() {
 		return(
-			<div>
-				<h2>Comments:</h2>
-				{/*<CommentList data={ DATA }/>*/}
+			<div style={ style.commentBox }>
+				<h2 style={ style.title }>Comments:</h2>
 				<CommentList data={ this.state.data }
 				onCommentDelete={ this.handleCommentDelete }
  				onCommentUpdate={ this.handleCommentUpdate }/>

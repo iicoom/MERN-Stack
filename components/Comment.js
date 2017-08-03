@@ -1,4 +1,5 @@
 import React from 'react';
+import style from '../style';
 
 
 class Comment extends React.Component {
@@ -57,28 +58,28 @@ class Comment extends React.Component {
 
 	render(){
 		return(
-			<div>
+			<div style={ style.comment }>
 				
-				<h3><span>{this.props.uniqueID}-</span>username:{this.props.author}  &nbsp; cotent:{this.props.text}</h3>
-				<a href='#' onClick={ this.updateComment }>update</a>
-				<a href='#' onClick={ this.deleteComment }>delete</a>
+				<h3>username:{this.props.author}  &nbsp; cotent:{this.props.text}</h3>
+				<a style={ style.updateLink } href='#' onClick={ this.updateComment }>update</a>
+				<a style={ style.deleteLink } href='#' onClick={ this.deleteComment }>delete</a>
 				{ (this.state.toBeUpdated)
 					? (<form onSubmit={ this.handleCommentUpdate }>
 					<input
 					type='text'
 					placeholder='Update name...'
-
+					style={ style.commentFormAuthor }
 					value={ this.state.author }
 					onChange= { this.handleAuthorChange } />
 					<input
 					type='text'
 					placeholder='Update your comment...'
-	
+					style= { style.commentFormText }
 					value={ this.state.text }
 					onChange={ this.handleTextChange } />
 					<input
 					type='submit'
-	
+					style={ style.commentFormPost }
 					value='Update' />
 					</form>)
 					: null}
